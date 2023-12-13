@@ -10,6 +10,9 @@ export class UsersService {
   async getAllUsers() {
     return this.userModel.find({});
   }
+  async getUserByUsername(username: string) {
+    return this.userModel.findOne({ username: username });
+  }
   async createUser(user: UserDto) {
     const isExists = await this.userModel.findOne({ username: user.username });
     if (isExists) {
@@ -18,11 +21,14 @@ export class UsersService {
     return this.userModel.create(user);
   }
   async updateUser(id: string, user: UserDto) {
-    const isExists =await this.userModel.findOne({_id:id});
-    console.log(isExists);
+    return this.userModel.findByIdAndUpdate(id, user, { new: true });
+  }
+
+  async deleteUser(_id: string) {
+    const isExists = await this.userModel.findOne({ _id });
     if (!isExists) {
       throw new HttpException('User not found!', HttpStatus.NOT_FOUND);
     }
-    return this.userModel.findByIdAndUpdate(id,user,{new:true});
+    return this.userModel.findByIdAndDelete(_id);
   }
 }

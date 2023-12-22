@@ -5,7 +5,8 @@ import { JwtModule } from '@nestjs/jwt';
 import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from 'src/users/users.schema';
 export const jwtConstants = {
-  secret: 'DO NOT USE THIS VALUE. INSTEAD, CREATE A COMPLEX SECRET AND KEEP IT SAFE OUTSIDE OF THE SOURCE CODE.',
+  secret:
+    'oR+GL.;5%4>1oR+GL.;5%4>1oR+GL.;5%4>1oR+GL.;5%4>1oR+GL.;5%4>1oR+GL.;5%4>1oR+GL.;5%4>1',
 };
 @Module({
   controllers: [AuthController],

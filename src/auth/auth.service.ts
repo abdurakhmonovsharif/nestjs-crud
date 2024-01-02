@@ -15,17 +15,16 @@ export class AuthService {
   constructor(
     @InjectModel(User.name) private userModel: Model<UserDocument>,
     private jwtService: JwtService,
-  ) {}
+  ) { }
   async registerUser(user: UserDto) {
     const isExists = await this.userModel.findOne({ username: user.username });
     if (isExists) {
       throw new HttpException('Username already exists', HttpStatus.CONFLICT);
     }
-    const salt = await bcrypt.genSalt();
-    const passwordHas = await bcrypt.hash(user.password, salt);
+    // const salt = await bcrypt.genSalt();
+    // const passwordHas = await bcrypt.hash(user.password, salt);
     const createdUser = await this.userModel.create({
       ...user,
-      password: passwordHas,
     });
     const payload = {
       sub: createdUser._id,

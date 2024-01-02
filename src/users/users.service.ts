@@ -18,10 +18,18 @@ export class UsersService {
     if (isExists) {
       throw new HttpException('Username already exists', HttpStatus.CONFLICT);
     }
-    return this.userModel.create(user);
+    let result = (await this.userModel.create(user)).toJSON()
+    delete result.__v
+    return result;
   }
   async updateUser(id: string, user: UserDto) {
-    return this.userModel.findByIdAndUpdate(id, user, { new: true });
+    const isExists = await this.userModel.findOne({ _id: id });
+    if (!isExists) {
+      throw new HttpException('User not found!', HttpStatus.NOT_FOUND);
+    }
+    let result = (await this.userModel.findByIdAndUpdate(id, user, { new: true })).toJSON()
+    delete result.__v;
+    return result;
   }
 
   async deleteUser(_id: string) {

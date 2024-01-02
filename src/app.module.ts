@@ -6,7 +6,7 @@ import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     MongooseModule.forRoot(
-      'mongodb+srv://fullstackdeveloper4413:yv4UCb8yhWtrbOFp@mydb.svis6ii.mongodb.net/nestjs?retryWrites=true&w=majority',
+      'mongodb://mongo:Aaa6BGe-5e6CHgc6BDC63dh1ADeEf6c-@monorail.proxy.rlwy.net:46794',
     ),
     UsersModule,
     AuthModule,
@@ -14,4 +14,4 @@ import { AuthModule } from './auth/auth.module';
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule { }

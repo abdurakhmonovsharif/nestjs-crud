@@ -20,7 +20,7 @@ export class UsersController {
   constructor(private readonly userService: UsersService) {}
   @HttpCode(200)
   @Get()
-  @UseGuards(AuthGuard) 
+  // @UseGuards(AuthGuard) 
   async getAllUsers() {
     return this.userService.getAllUsers();
   }

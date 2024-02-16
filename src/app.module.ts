@@ -2,14 +2,13 @@ import { Module } from '@nestjs/common';
 import { UsersModule } from './users/users.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './auth/auth.module';
-
+const DB_URL= 'mongodb+srv://fullstackdeveloper4413:yv4UCb8yhWtrbOFp@mydb.svis6ii.mongodb.net/g49?retryWrites=true&w=majority'
 @Module({
   imports: [
     MongooseModule.forRoot(
-      'mongodb+srv://fullstackdeveloper4413:yv4UCb8yhWtrbOFp@mydb.svis6ii.mongodb.net/nestjs?retryWrites=true&w=majority',
+     DB_URL,
     ),
     UsersModule,
-    AuthModule,
   ],
   controllers: [],
   providers: [],

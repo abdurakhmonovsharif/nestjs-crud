@@ -30,7 +30,7 @@ export class UsersController {
   async createUser(@Body() user: UserDto) {
     return this.userService.createUser(user);
   }
-  @HttpCode(201)
+  @HttpCode(200)
   @Put(':id')
   @UsePipes(ValidationPipe)
   async updateUser(@Param('id') id: string, @Body() user: UserDto) {

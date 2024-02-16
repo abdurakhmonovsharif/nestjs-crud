@@ -31,7 +31,7 @@ export class AuthService {
       username: createdUser.username,
     };
     const JsonUser = createdUser.toJSON();
-    delete JsonUser.password;
+    // delete JsonUser.password;
     return {
       user: JsonUser,
       access_token: await this.jwtService.signAsync(payload),
@@ -46,7 +46,8 @@ export class AuthService {
     }
     const isMatch = await bcrypt.compare(
       password,
-      findedUserByUsername.password,
+      ""
+      // findedUserByUsername.password,
     );
     if (!isMatch) {
       throw new UnauthorizedException();
@@ -55,7 +56,7 @@ export class AuthService {
       sub: findedUserByUsername._id,
       username: findedUserByUsername.username,
     };
-    delete findedUserByUsername.password;
+    // delete findedUserByUsername.password;
     return {
       user: findedUserByUsername,
       access_token: await this.jwtService.signAsync(payload),

@@ -8,7 +8,7 @@ export class AuthController {
   @HttpCode(200)
   @Post('login')
   async login(@Body() user:UserDto) {
-    return this.auth_service.loginUser(user.username,user.password);
+    // return this.auth_service.loginUser(user.username,user.password);
   }
   @HttpCode(200)
   @Post('register')

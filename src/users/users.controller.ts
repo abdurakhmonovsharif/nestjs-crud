@@ -7,6 +7,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
   Res,
   UsePipes,
   ValidationPipe,
@@ -20,9 +21,16 @@ export class UsersController {
   constructor(private readonly userService: UsersService) { }
   @HttpCode(200)
   @Get()
-  // @UseGuards(AuthGuard) 
-  async getAllUsers() {
-    return this.userService.getAllUsers();
+  async getAllUsers(@Query('_limit') limit?: number, @Query('_page') page?: number) {
+    if (limit && page) {
+      return this.userService.getUsersByLimitAndPage(limit, page);
+    } else if (limit) {
+      return this.userService.getUsersByLimit(limit);
+    } else if(page){
+      return this.userService.getUsersByDefaultLimitAndPage(page);
+    }else {
+      return this.userService.getAllUsers();
+    }
   }
   @HttpCode(201)
   @Post()
